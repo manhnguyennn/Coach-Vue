@@ -29,11 +29,12 @@ body {
   justify-content: center;
   padding: $spacing-sm $spacing-lg;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: $radius;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: $font-size-sm;
 
   &--primary {
     background-color: $primary;
@@ -67,7 +68,7 @@ body {
 .card {
   background-color: $background;
   border: 1px solid $border;
-  border-radius: 0.75rem;
+  border-radius: $radius;
   padding: $spacing-lg;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
@@ -83,7 +84,7 @@ body {
   background-color: $muted;
   color: $muted-foreground;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   font-weight: 500;
 
   &--primary {
@@ -91,9 +92,19 @@ body {
     color: $primary-foreground;
   }
 
+  &--secondary {
+    background-color: $secondary;
+    color: $secondary-foreground;
+  }
+
   &--success {
     background-color: $success;
     color: white;
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $border;
   }
 }
 
@@ -135,4 +146,25 @@ body {
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+// Utility classes for spacing
+.space-y-1rem > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-1\.25rem > * + * {
+  margin-top: 1.25rem;
+}
+
+.space-y-1\.5rem > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-2rem > * + * {
+  margin-top: 2rem;
+}
+
+.space-y-3rem > * + * {
+  margin-top: 3rem;
 }
