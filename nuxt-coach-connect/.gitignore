@@ -1,6 +1,5 @@
 # Nuxt dev/build outputs
 .output
-.data
 .nuxt
 .nitro
 .cache
@@ -10,7 +9,6 @@ dist
 node_modules
 
 # Logs
-logs
 *.log
 
 # Misc
