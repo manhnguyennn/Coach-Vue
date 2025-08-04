@@ -34,6 +34,10 @@ import {
   Zap,
   Briefcase,
   GraduationCap,
+  Calendar as CalendarIconSolid,
+  Users2,
+  Clock3,
+  DollarSign,
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
@@ -180,6 +184,59 @@ Throughout my career, I've guided over 500 professionals from emerging leaders t
             "Sarah's executive coaching program exceeded my expectations. The ROI in terms of career growth and personal development was incredible.",
           role: "Senior Manager",
         },
+      ],
+      openCourses: [
+        {
+          id: 1,
+          name: "Executive Leadership Mastery",
+          startDate: "2024-02-15",
+          totalSlots: 12,
+          enrolledStudents: 8,
+          duration: "8 weeks",
+          price: 1200,
+          description: "Comprehensive leadership program designed for senior managers and executives. Learn advanced leadership strategies, team dynamics, and executive presence.",
+          highlights: [
+            "Weekly 2-hour group sessions",
+            "1-on-1 coaching sessions",
+            "Leadership assessment tools",
+            "Peer networking opportunities"
+          ],
+          level: "Advanced"
+        },
+        {
+          id: 2,
+          name: "Strategic Communication Workshop",
+          startDate: "2024-02-22",
+          totalSlots: 15,
+          enrolledStudents: 12,
+          duration: "4 weeks",
+          price: 600,
+          description: "Master the art of strategic communication in leadership roles. Perfect for managers looking to improve their influence and impact.",
+          highlights: [
+            "Interactive workshops",
+            "Real-world case studies",
+            "Presentation skills training",
+            "Feedback and coaching"
+          ],
+          level: "Intermediate"
+        },
+        {
+          id: 3,
+          name: "New Manager Bootcamp",
+          startDate: "2024-03-01",
+          totalSlots: 20,
+          enrolledStudents: 5,
+          duration: "6 weeks",
+          price: 800,
+          description: "Essential skills for first-time managers. Learn how to transition from individual contributor to effective team leader.",
+          highlights: [
+            "Management fundamentals",
+            "Team building strategies",
+            "Performance management",
+            "Conflict resolution"
+          ],
+          level: "Beginner"
+        }
       ],
       availability: [
         { day: "Monday", slots: ["9:00 AM", "2:00 PM", "4:00 PM"] },
