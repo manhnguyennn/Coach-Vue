@@ -664,6 +664,128 @@ export default function CoachProfile() {
                 <Card className="p-6">
                   <CardHeader className="px-0 pt-0">
                     <CardTitle className="flex items-center gap-2">
+                      <CalendarIconSolid className="w-5 h-5" />
+                      Open Courses
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="px-0">
+                    {coach.openCourses && coach.openCourses.length > 0 ? (
+                      <div className="space-y-6">
+                        {coach.openCourses.map((course) => {
+                          const startDate = new Date(course.startDate);
+                          const spotsLeft = course.totalSlots - course.enrolledStudents;
+                          const isAlmostFull = spotsLeft <= 3;
+                          
+                          return (
+                            <div
+                              key={course.id}
+                              className="border border-border rounded-lg p-6 hover:border-primary/30 transition-colors"
+                            >
+                              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-3 mb-2">
+                                    <h3 className="text-lg font-semibold">{course.name}</h3>
+                                    <Badge 
+                                      variant={course.level === 'Advanced' ? 'default' : course.level === 'Intermediate' ? 'secondary' : 'outline'}
+                                      className="text-xs"
+                                    >
+                                      {course.level}
+                                    </Badge>
+                                  </div>
+                                  <p className="text-muted-foreground mb-3 leading-relaxed">
+                                    {course.description}
+                                  </p>
+                                  
+                                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div className="flex items-center gap-2">
+                                      <CalendarIconSolid className="w-4 h-4 text-primary/60" />
+                                      <span className="text-muted-foreground">Starts:</span>
+                                      <span className="font-medium">
+                                        {startDate.toLocaleDateString('en-US', { 
+                                          month: 'short', 
+                                          day: 'numeric',
+                                          year: 'numeric'
+                                        })}
+                                      </span>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2">
+                                      <Clock3 className="w-4 h-4 text-primary/60" />
+                                      <span className="text-muted-foreground">Duration:</span>
+                                      <span className="font-medium">{course.duration}</span>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2">
+                                      <DollarSign className="w-4 h-4 text-primary/60" />
+                                      <span className="text-muted-foreground">Price:</span>
+                                      <span className="font-medium">${course.price}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex flex-col items-end gap-3">
+                                  <div className="text-right">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <Users2 className="w-4 h-4 text-primary/60" />
+                                      <span className="text-sm font-medium">
+                                        {course.enrolledStudents}/{course.totalSlots} enrolled
+                                      </span>
+                                    </div>
+                                    <div className="w-32 bg-muted rounded-full h-2">
+                                      <div 
+                                        className="bg-primary h-2 rounded-full transition-all"
+                                        style={{ width: `${(course.enrolledStudents / course.totalSlots) * 100}%` }}
+                                      />
+                                    </div>
+                                    <div className="text-xs text-muted-foreground mt-1">
+                                      {spotsLeft > 0 ? (
+                                        <span className={isAlmostFull ? "text-warning font-medium" : ""}>
+                                          {spotsLeft} spots left
+                                        </span>
+                                      ) : (
+                                        <span className="text-destructive font-medium">Course Full</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                  
+                                  <Button 
+                                    className="w-full lg:w-auto"
+                                    disabled={spotsLeft === 0}
+                                  >
+                                    {spotsLeft === 0 ? 'Course Full' : 'Enroll Now'}
+                                  </Button>
+                                </div>
+                              </div>
+                              
+                              {/* Course Highlights */}
+                              <div className="border-t pt-4">
+                                <h4 className="text-sm font-medium mb-3">What's Included:</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                  {course.highlights.map((highlight, index) => (
+                                    <div key={index} className="flex items-center gap-2 text-sm">
+                                      <CheckCircle className="w-3 h-3 text-success" />
+                                      <span className="text-muted-foreground">{highlight}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8">
+                        <CalendarIconSolid className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
+                        <p className="text-muted-foreground">No open courses available at the moment.</p>
+                        <p className="text-sm text-muted-foreground mt-1">Check back soon for new course offerings!</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                <Card className="p-6">
+                  <CardHeader className="px-0 pt-0">
+                    <CardTitle className="flex items-center gap-2">
                       <Zap className="w-5 h-5" />
                       Skills & Expertise
                     </CardTitle>
