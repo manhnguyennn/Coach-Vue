@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import Index from "./pages/Index";
 import CoachSearch from "./pages/CoachSearch";
 import CoachProfile from "./pages/CoachProfile";
@@ -19,25 +20,27 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/coaches" element={<CoachSearch />} />
-            <Route path="/coach/:id" element={<CoachProfile />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/recommendations" element={<Recommendations />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Login />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/coaches" element={<CoachSearch />} />
+              <Route path="/coach/:id" element={<CoachProfile />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/recommendations" element={<Recommendations />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Login />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

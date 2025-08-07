@@ -24,6 +24,8 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useTranslation } from "@/lib/i18n";
 
 interface NavbarProps {
   userRole?: "coach" | "trainee" | null;
@@ -37,6 +39,7 @@ export default function Navbar({
   userAvatar,
 }: NavbarProps) {
   const { theme, setTheme } = useTheme();
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
 
@@ -72,7 +75,7 @@ export default function Navbar({
                 isActive("/coaches") ? "text-primary" : "text-muted-foreground"
               }`}
             >
-              Find Coaches
+              {t('nav.findCoaches')}
             </Link>
             <Link
               to="/how-it-works"
@@ -82,7 +85,7 @@ export default function Navbar({
                   : "text-muted-foreground"
               }`}
             >
-              How it Works
+              {t('nav.howItWorks')}
             </Link>
             <Link
               to="/recommendations"
@@ -92,7 +95,7 @@ export default function Navbar({
                   : "text-muted-foreground"
               }`}
             >
-              AI Recommendations
+              {t('nav.aiRecommendations')}
             </Link>
             {userRole === "coach" && (
               <Link
@@ -110,6 +113,9 @@ export default function Navbar({
 
           {/* Right side actions */}
           <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
             {/* Dark mode toggle */}
             <div className="hidden sm:flex items-center space-x-2">
               <Sun className="h-4 w-4" />
@@ -179,13 +185,13 @@ export default function Navbar({
                     <DropdownMenuItem asChild>
                       <Link to="/dashboard">
                         <User className="mr-2 h-4 w-4" />
-                        Dashboard
+                        {t('nav.dashboard')}
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link to="/profile">
                         <Settings className="mr-2 h-4 w-4" />
-                        Profile Settings
+                        {t('nav.profile')}
                       </Link>
                     </DropdownMenuItem>
                     {userRole === "coach" && (
@@ -199,7 +205,7 @@ export default function Navbar({
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
                       <LogOut className="mr-2 h-4 w-4" />
-                      Log out
+                      {t('nav.logout')}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -207,12 +213,12 @@ export default function Navbar({
             ) : (
               <div className="flex items-center space-x-2">
                 <Button variant="outline" asChild className="hidden sm:flex">
-                  <Link to="/login">Log In</Link>
+                  <Link to="/login">{t('nav.login')}</Link>
                 </Button>
                 <Button asChild>
                   <Link to="/signup">
-                    <span className="hidden sm:inline">Get Started</span>
-                    <span className="sm:hidden">Join</span>
+                    <span className="hidden sm:inline">{t('nav.getStarted')}</span>
+                    <span className="sm:hidden">{t('nav.getStarted')}</span>
                   </Link>
                 </Button>
               </div>

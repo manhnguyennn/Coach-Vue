@@ -17,8 +17,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Login() {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [userType, setUserType] = useState<"trainee" | "coach" | null>(null);
 
@@ -31,18 +33,18 @@ export default function Login() {
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
             <p className="text-muted-foreground">
-              Sign in to continue your learning journey
+              {t('login.subtitle')}
             </p>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-center">Sign In</CardTitle>
+              <CardTitle className="text-center">{t('login.signIn')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* User Type Selection */}
               <div className="space-y-3">
-                <Label>I want to sign in as:</Label>
+                <Label>{t('login.signInAs')}</Label>
                 <div className="grid grid-cols-2 gap-3">
                   <Button
                     variant={userType === "trainee" ? "default" : "outline"}
@@ -50,8 +52,8 @@ export default function Login() {
                     className="h-20 flex-col"
                   >
                     <BookOpen className="w-6 h-6 mb-2" />
-                    <span>Trainee</span>
-                    <span className="text-xs opacity-75">Learn & Grow</span>
+                    <span>{t('login.trainee')}</span>
+                    <span className="text-xs opacity-75">{t('login.traineeSubtitle')}</span>
                   </Button>
                   <Button
                     variant={userType === "coach" ? "default" : "outline"}
@@ -59,8 +61,8 @@ export default function Login() {
                     className="h-20 flex-col"
                   >
                     <Users className="w-6 h-6 mb-2" />
-                    <span>Coach</span>
-                    <span className="text-xs opacity-75">Teach & Mentor</span>
+                    <span>{t('login.coach')}</span>
+                    <span className="text-xs opacity-75">{t('login.coachSubtitle')}</span>
                   </Button>
                 </div>
               </div>
@@ -70,26 +72,26 @@ export default function Login() {
               {/* Login Form */}
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('login.email')}</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder={t('login.emailPlaceholder')}
                       className="pl-10"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t('login.password')}</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
+                      placeholder={t('login.passwordPlaceholder')}
                       className="pl-10 pr-10"
                     />
                     <Button
@@ -113,7 +115,7 @@ export default function Login() {
                     to="/forgot-password"
                     className="text-primary hover:underline"
                   >
-                    Forgot password?
+                    {t('login.forgotPassword')}
                   </Link>
                 </div>
               </div>
@@ -122,18 +124,18 @@ export default function Login() {
               <div className="space-y-4">
                 <Button className="w-full" disabled={!userType}>
                   <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
+                  {t('login.signIn')}
                   {userType && (
                     <Badge variant="secondary" className="ml-2">
-                      as {userType}
+                      {userType === 'trainee' ? t('login.trainee') : t('login.coach')}
                     </Badge>
                   )}
                 </Button>
 
                 <div className="text-center text-sm text-muted-foreground">
-                  Don't have an account?{" "}
+                  {t('login.noAccount')}{" "}
                   <Link to="/signup" className="text-primary hover:underline">
-                    Sign up here
+                    {t('login.signUpHere')}
                   </Link>
                 </div>
               </div>
@@ -144,10 +146,9 @@ export default function Login() {
               <Card className="bg-muted/50 border-0">
                 <CardContent className="p-4 text-center">
                   <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="text-sm font-medium mb-1">Demo Mode</p>
+                  <p className="text-sm font-medium mb-1">{t('login.demoMode')}</p>
                   <p className="text-xs text-muted-foreground">
-                    Full authentication system coming soon. For now, you can
-                    explore the platform without signing in.
+                    {t('login.demoDescription')}
                   </p>
                 </CardContent>
               </Card>

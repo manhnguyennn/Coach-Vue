@@ -13,8 +13,11 @@ import {
   Star,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Recommendations() {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -23,14 +26,13 @@ export default function Recommendations() {
         <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4">
             <Sparkles className="w-3 h-3 mr-1" />
-            AI-Powered
+            {t('recommendations.badge')}
           </Badge>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Personalized Recommendations
+            {t('recommendations.title')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get AI-powered recommendations for skills, courses, and coaches
-            based on your goals and learning style
+            {t('recommendations.description')}
           </p>
         </div>
 
@@ -40,10 +42,9 @@ export default function Recommendations() {
             <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
               <Brain className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-3xl font-bold mb-4">AI Recommendations</h2>
+            <h2 className="text-3xl font-bold mb-4">{t('recommendations.aiRecommendations')}</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Our advanced AI system will analyze your goals, preferences, and
-              learning patterns to provide personalized recommendations.
+              {t('recommendations.aiDescription')}
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
@@ -51,10 +52,9 @@ export default function Recommendations() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Target className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">Smart Goal Setting</h3>
+                <h3 className="font-semibold mb-2">{t('recommendations.smartGoalSetting.title')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  AI helps you define clear, achievable goals based on your
-                  interests and career aspirations
+                  {t('recommendations.smartGoalSetting.description')}
                 </p>
               </Card>
 
@@ -62,10 +62,9 @@ export default function Recommendations() {
                 <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="font-semibold mb-2">Course Recommendations</h3>
+                <h3 className="font-semibold mb-2">{t('recommendations.courseRecommendations.title')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Discover courses and skills that align with your career path
-                  and learning preferences
+                  {t('recommendations.courseRecommendations.description')}
                 </p>
               </Card>
 
@@ -73,39 +72,38 @@ export default function Recommendations() {
                 <div className="w-12 h-12 bg-info/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Users className="w-6 h-6 text-info" />
                 </div>
-                <h3 className="font-semibold mb-2">Coach Matching</h3>
+                <h3 className="font-semibold mb-2">{t('recommendations.coachMatching.title')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Find coaches whose expertise and teaching style perfectly
-                  match your learning needs
+                  {t('recommendations.coachMatching.description')}
                 </p>
               </Card>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Coming Features:</h3>
+              <h3 className="text-lg font-semibold">{t('recommendations.comingFeatures')}</h3>
               <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto text-sm text-muted-foreground">
                 <div className="flex items-center">
                   <Zap className="w-4 h-4 mr-2 text-warning" />
-                  Skill gap analysis
+                  {t('recommendations.skillGapAnalysis')}
                 </div>
                 <div className="flex items-center">
                   <TrendingUp className="w-4 h-4 mr-2 text-success" />
-                  Career progression paths
+                  {t('recommendations.careerProgression')}
                 </div>
                 <div className="flex items-center">
                   <Star className="w-4 h-4 mr-2 text-primary" />
-                  Learning style assessment
+                  {t('recommendations.learningStyleAssessment')}
                 </div>
                 <div className="flex items-center">
                   <Brain className="w-4 h-4 mr-2 text-accent" />
-                  Personalized learning plans
+                  {t('recommendations.personalizedPlans')}
                 </div>
               </div>
             </div>
 
             <div className="mt-8">
               <Button asChild>
-                <Link to="/coaches">Browse Coaches Instead</Link>
+                <Link to="/coaches">{t('recommendations.browseCoachesInstead')}</Link>
               </Button>
             </div>
           </CardContent>

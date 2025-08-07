@@ -13,8 +13,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
       {/* Background pattern */}
@@ -29,16 +32,14 @@ export default function Hero() {
             <div className="space-y-4">
               <Badge variant="secondary" className="w-fit">
                 <TrendingUp className="w-3 h-3 mr-1" />
-                #1 Coaching Platform
+                {t('hero.badge')}
               </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Find Your Perfect <span className="text-primary">Coach</span> &
-                Accelerate Growth
-              </h1>
+              <h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+                dangerouslySetInnerHTML={{ __html: t('hero.title') }}
+              />
               <p className="text-lg text-muted-foreground max-w-lg">
-                Connect with world-class coaches and trainers. Master new
-                skills, achieve your goals, and unlock your potential with
-                personalized 1-on-1 coaching sessions.
+                {t('hero.description')}
               </p>
             </div>
 
@@ -47,13 +48,13 @@ export default function Hero() {
               <Button size="lg" asChild>
                 <Link to="/coaches">
                   <BookOpen className="w-4 h-4 mr-2" />
-                  Find a Coach
+                  {t('hero.findCoach')}
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <Link to="/become-coach">
                   <Users className="w-4 h-4 mr-2" />
-                  Become a Coach
+                  {t('hero.becomeCoach')}
                 </Link>
               </Button>
             </div>
@@ -63,20 +64,20 @@ export default function Hero() {
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">5,000+</div>
                 <div className="text-sm text-muted-foreground">
-                  Expert Coaches
+                  {t('hero.expertCoaches')}
                 </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">50,000+</div>
                 <div className="text-sm text-muted-foreground">
-                  Success Stories
+                  {t('hero.successStories')}
                 </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">4.9</div>
                 <div className="text-sm text-muted-foreground flex items-center justify-center">
                   <Star className="w-3 h-3 fill-current text-yellow-500 mr-1" />
-                  Average Rating
+                  {t('hero.averageRating')}
                 </div>
               </div>
             </div>
@@ -86,10 +87,10 @@ export default function Hero() {
           <div className="space-y-6">
             <div className="text-center mb-8">
               <h3 className="text-lg font-semibold mb-2">
-                Featured Coaches This Week
+                {t('hero.featuredCoaches')}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Highly rated professionals ready to help you succeed
+                {t('hero.featuredSubtitle')}
               </p>
             </div>
 

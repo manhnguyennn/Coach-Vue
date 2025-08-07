@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -196,6 +197,7 @@ const sortOptions = [
 ];
 
 export default function CoachSearch() {
+  const { t } = useTranslation();
   const [sortBy, setSortBy] = useState("recommended");
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -324,11 +326,10 @@ export default function CoachSearch() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Find Your Perfect Coach
+              {t('coachSearch.title')}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Browse our curated selection of expert coaches and find the right
-              mentor for your goals
+              {t('coachSearch.description')}
             </p>
           </div>
 
@@ -337,7 +338,7 @@ export default function CoachSearch() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
-                placeholder="Search for coaches, skills, or keywords..."
+                placeholder={t('coachSearch.searchPlaceholder')}
                 value={filters.search}
                 onChange={(e) =>
                   setFilters({ ...filters, search: e.target.value })
@@ -366,7 +367,7 @@ export default function CoachSearch() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                 <h2 className="text-lg sm:text-xl font-semibold">
-                  {filteredAndSortedCoaches.length} coaches found
+                  {filteredAndSortedCoaches.length} {t('coachSearch.coachesFound')}
                 </h2>
                 {(filters.search ||
                   (filters.category && filters.category !== "all") ||
@@ -422,14 +423,13 @@ export default function CoachSearch() {
                     <Search className="w-8 h-8 text-muted-foreground" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">
-                    No coaches found
+                    {t('coachSearch.noResults')}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Try adjusting your filters or search terms to find more
-                    results.
+                    {t('coachSearch.noResultsDescription')}
                   </p>
                   <Button variant="outline" onClick={clearFilters}>
-                    Clear All Filters
+                    {t('coachSearch.clearFilters')}
                   </Button>
                 </CardContent>
               </Card>
@@ -439,7 +439,7 @@ export default function CoachSearch() {
             {filteredAndSortedCoaches.length > 12 && (
               <div className="text-center mt-12">
                 <Button variant="outline" size="lg">
-                  Load More Coaches
+                  {t('coachSearch.loadMore')}
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </Button>
               </div>
